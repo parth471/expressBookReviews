@@ -31,9 +31,29 @@ Actual fields from the API response:
 
 Task 10 publication check:
 Public GitHub URL: https://github.com/parth471/expressBookReviews/blob/main/final_project/router/general.js
-GitHub contents API reports the current public file SHA as 9eb0ac1a918f310dd3ffffb3ecf6f8c3f434ce37. That public file is still the starter stub with "Yet to be implemented" handlers. The local file has the Axios callback and Promise implementations, but those local edits have not been pushed. Task 10 public code therefore still needs publication after review.
+Verification command: curl.exe -sS https://raw.githubusercontent.com/parth471/expressBookReviews/main/final_project/router/general.js
+The command returned the public file content. The retrieved content includes these four exported Axios methods:
 
-Local Task 10 - Axios client demonstration (run against the local application; this is not proof that local edits are public)
+function getAllBooks(callback) {
+  if (typeof callback !== 'function') throw new TypeError('getAllBooks expects a callback.');
+  axios.get(`${baseURL}/`).then(responseData).then((data) => callback(null, data)).catch((error) => callback(error, null));
+}
+
+function getBookByISBN(isbn) {
+  return axios.get(`${baseURL}/isbn/${encodeURIComponent(isbn)}`).then(responseData);
+}
+
+function getBooksByAuthor(author) {
+  return axios.get(`${baseURL}/author/${encodeURIComponent(author)}`).then(responseData);
+}
+
+function getBooksByTitle(title) {
+  return axios.get(`${baseURL}/title/${encodeURIComponent(title)}`).then(responseData);
+}
+
+The retrieved file also exports getAllBooks, getBookByISBN, getBooksByAuthor, and getBooksByTitle with the general router. The callback method handles request errors; the other three methods return Axios Promises. This is the current public file content, not merely the local copy.
+
+Task 10 - Axios client demonstration (run against the local application)
 Command: npm.cmd run demo:general
 Actual output:
 > bookshop@1.0.1 demo:general

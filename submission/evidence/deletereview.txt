@@ -1,0 +1,10 @@
+﻿Task: Task 9 - Delete the authenticated user's review
+Disposable account: ibm_submit_20261010_130953
+Delete command: curl.exe -sS -X DELETE -H 'Authorization: Bearer [REDACTED]' http://localhost:5000/customer/auth/review/1
+Actual output:
+{"message":"Review deleted successfully.","reviews":{}}
+HTTP_STATUS:200
+Verification command: curl.exe -sS http://localhost:5000/review/1
+Actual output:
+{}
+HTTP_STATUS:200

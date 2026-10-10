@@ -1,0 +1,15 @@
+﻿Task: Task 8 - Add and modify an authenticated review
+Disposable account: ibm_submit_20261010_130953
+The real JWT was used and is redacted. Temporary request JSON files were removed.
+Add command: curl.exe -sS -X PUT -H 'Authorization: Bearer [REDACTED]' -H 'Content-Type: application/json' --data-binary @C:\Users\PRIYA\AppData\Local\Temp\book-review-submission-request.json http://localhost:5000/customer/auth/review/1
+Add actual output:
+{"message":"Review added or updated successfully.","reviews":{"ibm_submit_20261010_130953":"Great book; first review."}}
+HTTP_STATUS:200
+Modify command: curl.exe -sS -X PATCH -H 'Authorization: Bearer [REDACTED]' -H 'Content-Type: application/json' --data-binary @C:\Users\PRIYA\AppData\Local\Temp\book-review-submission-request.json http://localhost:5000/customer/auth/review/1
+Modify actual output:
+{"message":"Review updated successfully.","reviews":{"ibm_submit_20261010_130953":"Updated review after rereading."}}
+HTTP_STATUS:200
+Verify command: curl.exe -sS http://localhost:5000/review/1
+Verify actual output:
+{"ibm_submit_20261010_130953":"Updated review after rereading."}
+HTTP_STATUS:200

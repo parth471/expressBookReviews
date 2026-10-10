@@ -1,0 +1,7 @@
+﻿Task: Task 6 - Register a user
+Disposable username: ibm_submit_20261010_130953
+Command: curl.exe -sS -X POST -H 'Content-Type: application/json' --data-binary @C:\Users\PRIYA\AppData\Local\Temp\book-review-submission-request.json http://localhost:5000/register
+The temporary request file contained a disposable password and was removed after use.
+Actual output:
+{"message":"User successfully registered."}
+HTTP_STATUS:201

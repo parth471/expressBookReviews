@@ -1,0 +1,5 @@
+﻿Task: Task 5 - Retrieve reviews for ISBN 1
+Command: curl.exe -sS -w "\nHTTP_STATUS:%{http_code}" http://localhost:5000/review/1
+Actual output:
+{} HTTP_STATUS:200
+

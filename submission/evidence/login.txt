@@ -1,0 +1,7 @@
+﻿Task: Task 7 - Log in and obtain JWT
+Disposable username: ibm_submit_20261010_130953
+Command: curl.exe -sS -X POST -H 'Content-Type: application/json' --data-binary @C:\Users\PRIYA\AppData\Local\Temp\book-review-submission-request.json http://localhost:5000/customer/login
+Actual output (JWT redacted):
+{"message":"Login successful.","token":"[REDACTED]"}
+HTTP_STATUS:200
+This real token was used for the review requests; it and the password are not retained.

@@ -1,0 +1,5 @@
+﻿Task: Task 2 - Retrieve book by ISBN
+Command: curl.exe -sS -w "\nHTTP_STATUS:%{http_code}" http://localhost:5000/isbn/1
+Actual output:
+{"author":"Chinua Achebe","title":"Things Fall Apart","reviews":{}} HTTP_STATUS:200
+

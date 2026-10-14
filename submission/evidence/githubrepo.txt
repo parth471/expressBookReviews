@@ -1,82 +1,12 @@
-Task: Task 11 - GitHub fork and repository remotes
+Task 1 — GitHub Fork Verification
 
-Repository URL supplied for the clone: https://github.com/parth471/expressBookReviews
-Upstream repository URL: https://github.com/ibm-developer-skills-network/expressBookReviews
-
-Commands used to inspect location, remotes, and branch:
-git rev-parse --show-toplevel
-git -c remote.upstream.url=https://github.com/ibm-developer-skills-network/expressBookReviews.git remote -v
-git branch --show-current
-
-Actual terminal output:
-C:/Users/PRIYA/expressBookReview
-origin  https://github.com/parth471/expressBookReviews.git (fetch)
-origin  https://github.com/parth471/expressBookReviews.git (push)
-upstream        https://github.com/ibm-developer-skills-network/expressBookReviews.git (fetch)
-upstream        https://github.com/ibm-developer-skills-network/expressBookReviews.git (push)
-main
-
-The origin URL was cloned successfully and is the repository URL supplied by the user. The upstream line was supplied for this read-only inspection with Git's command-scoped -c option; no Git remote configuration was changed.
-
-GitHub REST API verification (GET https://api.github.com/repos/parth471/expressBookReviews)
-Command: curl.exe -sS -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/parth471/expressBookReviews
-Actual fields from the API response:
+Command:
+powershell -NoProfile -Command "$r = curl.exe -sS -H 'Accept: application/vnd.github+json' -H 'X-GitHub-Api-Version: 2022-11-28' https://api.github.com/repos/parth471/expressBookReviews | ConvertFrom-Json; [pscustomobject]@{full_name=$r.full_name; html_url=$r.html_url; fork=$r.fork; parent_full_name=$r.parent.full_name; source_full_name=$r.source.full_name} | ConvertTo-Json"
+output:
 {
   "full_name": "parth471/expressBookReviews",
   "html_url": "https://github.com/parth471/expressBookReviews",
   "fork": true,
-  "parent.full_name": "ibm-developer-skills-network/expressBookReviews",
-  "source.full_name": "ibm-developer-skills-network/expressBookReviews"
-}
-
-Task 10 publication check:
-Public GitHub URL: https://github.com/parth471/expressBookReviews/blob/main/final_project/router/general.js
-Verification command: curl.exe -sS https://raw.githubusercontent.com/parth471/expressBookReviews/main/final_project/router/general.js
-The command returned the public file content. The retrieved content includes these four exported Axios methods:
-
-function getAllBooks(callback) {
-  if (typeof callback !== 'function') throw new TypeError('getAllBooks expects a callback.');
-  axios.get(`${baseURL}/`).then(responseData).then((data) => callback(null, data)).catch((error) => callback(error, null));
-}
-
-function getBookByISBN(isbn) {
-  return axios.get(`${baseURL}/isbn/${encodeURIComponent(isbn)}`).then(responseData);
-}
-
-function getBooksByAuthor(author) {
-  return axios.get(`${baseURL}/author/${encodeURIComponent(author)}`).then(responseData);
-}
-
-function getBooksByTitle(title) {
-  return axios.get(`${baseURL}/title/${encodeURIComponent(title)}`).then(responseData);
-}
-
-The retrieved file also exports getAllBooks, getBookByISBN, getBooksByAuthor, and getBooksByTitle with the general router. The callback method handles request errors; the other three methods return Axios Promises. This is the current public file content, not merely the local copy.
-
-Task 10 - Axios client demonstration (run against the local application)
-Command: npm.cmd run demo:general
-Actual output:
-> bookshop@1.0.1 demo:general
-> node general-demo.js
-{
-  "totalBooks": 10,
-  "isbn1": {
-    "author": "Chinua Achebe",
-    "title": "Things Fall Apart",
-    "reviews": {}
-  },
-  "authorMatches": {
-    "1": {
-      "author": "Chinua Achebe",
-      "title": "Things Fall Apart",
-      "reviews": {}
-    }
-  },
-  "titleMatches": {
-    "1": {
-      "author": "Chinua Achebe",
-      "title": "Things Fall Apart",
-      "reviews": {}
-    }
-  }
+  "parent_full_name": "ibm-developer-skills-network/expressBookReviews",
+  "source_full_name": "ibm-developer-skills-network/expressBookReviews"
 }
